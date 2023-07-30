@@ -15,6 +15,11 @@ const router = createRouter({
           path: '',
           name: 'home',
           component: () => import('../views/mains/HomeView.vue')
+        },
+        {
+          path: '/gps',
+          name: 'gps',
+          component: () => import('../views/mains/GpsView.vue')
         }
       ]
     },

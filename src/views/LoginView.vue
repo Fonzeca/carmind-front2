@@ -37,7 +37,7 @@ export default defineComponent({
 
             <p class="mb-1">Contraseña</p>
             <NormalInput v-model:value="password" class="mb-9" :hide-value="!showPass">
-                <div class="flex flex-col justify-center h-full w-[30px] cursor-pointer" @click="showPass = !showPass">
+                <div class="flex flex-col justify-center h-full w-[30px] cursor-pointer select-none" @click="showPass = !showPass">
                     <IconEye v-if="!showPass"></IconEye>
                     <IconEyeSlash v-else></IconEyeSlash>
                 </div>

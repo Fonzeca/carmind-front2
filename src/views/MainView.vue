@@ -7,9 +7,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 8,
-      options: {}
+
     };
   },
   methods: {

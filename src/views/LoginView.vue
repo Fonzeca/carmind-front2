@@ -40,6 +40,7 @@ export default defineComponent({
                 <div class="flex flex-col justify-center h-full w-[30px] cursor-pointer select-none" @click="showPass = !showPass">
                     <IconEye v-if="!showPass"></IconEye>
                     <IconEyeSlash v-else></IconEyeSlash>
+                    
                 </div>
             </NormalInput>
             <NormalButton @click="login" label="Iniciar sesión"></NormalButton>

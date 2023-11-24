@@ -21,7 +21,7 @@ RUN npm run build
 FROM nginx:stable-alpine as production-stage
 
 COPY --from=builder /app/dist /usr/share/nginx/html
-COPY --from=builder /app/.env ./.env
+# COPY --from=builder /app/.env ./.env
 
 
 # De otra manera se borra estos cmds y se escucha en el puerto 80

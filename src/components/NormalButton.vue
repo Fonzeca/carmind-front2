@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full flex flex-col bg-bar-500 text-white justify-center items-center h-[45px] rounded-md" @click="click" v-touch:tap="click">
+  <div class="w-full flex flex-col bg-bar-500 text-white justify-center items-center h-[45px] rounded-md" v-touch:tap="click">
     {{ label }}
   </div>
 </template>

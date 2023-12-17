@@ -5,6 +5,9 @@ import NormalButton from '@/components/NormalButton.vue';
 import NormalInput from '@/components/NormalInput.vue';
 import IconEye from '@/components/icons/IconEye.vue';
 import IconEyeSlash from '@/components/icons/IconEyeSlash.vue';
+import { authStore } from '@/stores/auth';
+import { mapStores } from 'pinia';
+
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -17,9 +20,17 @@ export default defineComponent({
         };
     },
     methods: {
-        login() {
-            alert("Login");
+        async login() {
+            try {
+                const response = await this.authStore.login(this.username, this.password);
+                console.log(response);
+            } catch (error) {
+                console.log(error);
+            }
         }
+    },
+    computed: {
+        ...mapStores(authStore)
     },
     components: { NormalInput, NormalButton, IconEye, IconEyeSlash }
 })
@@ -37,10 +48,11 @@ export default defineComponent({
 
             <p class="mb-1">Contraseña</p>
             <NormalInput v-model:value="password" class="mb-9" :hide-value="!showPass">
-                <div class="flex flex-col justify-center h-full w-[30px] cursor-pointer select-none" @click="showPass = !showPass">
+                <div class="flex flex-col justify-center h-full w-[30px] cursor-pointer select-none"
+                    @click="showPass = !showPass">
                     <IconEye v-if="!showPass"></IconEye>
                     <IconEyeSlash v-else></IconEyeSlash>
-                    
+
                 </div>
             </NormalInput>
             <NormalButton @click="login" label="Iniciar sesión"></NormalButton>

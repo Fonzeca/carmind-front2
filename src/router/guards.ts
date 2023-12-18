@@ -12,3 +12,15 @@ export const mustBeLogin = async (to: RouteLocationNormalized, from: RouteLocati
     next();
 
 }
+
+export const mustBeLoggedOut = async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
+
+    try {
+        await UserHubApi.GET().validateCookie();
+    } catch (error) {
+        next()
+    }
+
+    next('/');
+
+}

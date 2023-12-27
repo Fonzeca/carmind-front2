@@ -7,6 +7,7 @@ export const mustBeLogin = async (to: RouteLocationNormalized, from: RouteLocati
         await UserHubApi.GET().validateCookie();
     } catch (error) {
         next('/login')
+        return;
     }
 
     next();
@@ -19,6 +20,7 @@ export const mustBeLoggedOut = async (to: RouteLocationNormalized, from: RouteLo
         await UserHubApi.GET().validateCookie();
     } catch (error) {
         next()
+        return;
     }
 
     next('/');

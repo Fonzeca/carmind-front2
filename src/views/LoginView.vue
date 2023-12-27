@@ -23,9 +23,14 @@ export default defineComponent({
         async login() {
             try {
                 await this.authStore.login(this.username, this.password);
-                this.$router.push({ name: 'home' });
+                this.$router.push('/');
             } catch (error) {
                 console.log(error);
+            }
+        },
+        handleEnter(event: KeyboardEvent) {
+            if (event.key === 'Enter') {
+                this.login();
             }
         }
     },
@@ -42,7 +47,7 @@ export default defineComponent({
         <img :src="imageUrl" class="max-w-[87px] max-h-[87px]" />
         <p class="mt-3 text-2xl font-bold mb-11">CarMind</p>
         <p class="text-lg mb-14">Ingresá a tu cuenta</p>
-        <div class="max-w-[300px]">
+        <div class="max-w-[300px]" @keydown="handleEnter">
             <p class="mb-1">E-mail</p>
             <NormalInput v-model:value="username" class="mb-9"></NormalInput>
 

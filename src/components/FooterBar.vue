@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import IconCar from './icons/footer-bar/IconCar.vue';
+import IconPerson from './icons/footer-bar/IconPerson.vue';
 import IconRoute from './icons/footer-bar/IconRoute.vue';
 
 export default defineComponent({
@@ -12,25 +13,32 @@ export default defineComponent({
             {
               label: "Vehiculos",
               icon: IconCar,
-              route: "/"
+              route: "app.home"
             },
             //Rutas
             {
               label: "Rutas",
               icon: IconRoute,
-              route: "/gps"
+              route: "app.gps"
+            },
+            {
+              label: "Perfil",
+              icon: IconPerson,
+              route: "app.profile"
             },
           ],
           selected: 0,
         };
     },
     mounted() {
-      this.selected = this.options.findIndex((item) => item.route === this.$route.path);
+      this.selected = this.options.findIndex((item) => item.route === this.$route.name);
+      console.log(this.options);
+      
     },
     methods: {
       click(index: number){
         this.selected = index;
-        this.$router.push(this.options[index].route);
+        this.$router.push({name: this.options[index].route});
       }
     },
     components: { IconRoute, IconCar }

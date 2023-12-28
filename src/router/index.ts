@@ -7,19 +7,29 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'root',
+      redirect: '/app'
+    },
+    {
+      path: '/app',
+      name: 'app',
       component: MainView,
       beforeEnter:[mustBeLogin],
       children:[
         {
-          path: '',
-          name: 'home',
+          path: 'home',
+          name: 'app.home',
           component: () => import('../views/mains/HomeView.vue')
         },
         {
-          path: '/gps',
-          name: 'gps',
+          path: 'gps',
+          name: 'app.gps',
           component: () => import('../views/mains/GpsView.vue')
+        },
+        {
+          path: "profile",
+          name: "app.profile",
+          component: () => import("../views/mains/ProfileView.vue")
         }
       ]
     },

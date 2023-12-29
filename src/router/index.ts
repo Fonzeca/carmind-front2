@@ -17,19 +17,22 @@ const router = createRouter({
       beforeEnter:[mustBeLogin],
       children:[
         {
-          path: 'home',
+          path: '',
           name: 'app.home',
-          component: () => import('../views/mains/HomeView.vue')
+          component: () => import('../views/mains/HomeView.vue'),
+          beforeEnter:[mustBeLogin],
         },
         {
           path: 'gps',
           name: 'app.gps',
-          component: () => import('../views/mains/GpsView.vue')
+          component: () => import('../views/mains/GpsView.vue'),
+          beforeEnter:[mustBeLogin],
         },
         {
           path: "profile",
           name: "app.profile",
-          component: () => import("../views/mains/ProfileView.vue")
+          component: () => import("../views/mains/ProfileView.vue"),
+          beforeEnter:[mustBeLogin],
         }
       ]
     },

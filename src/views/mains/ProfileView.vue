@@ -14,8 +14,8 @@ export default defineComponent({
     };
   },
   methods: {
-    logout() {
-      this.authStore.logout();
+    async logout() {
+      await this.authStore.logout();
       this.$router.push('/');
     }
   },

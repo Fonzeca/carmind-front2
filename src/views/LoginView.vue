@@ -21,12 +21,14 @@ export default defineComponent({
     },
     methods: {
         async login() {
+            let loader = this.$loading.show();
             try {
                 await this.authStore.login(this.username, this.password);
                 this.$router.push('/app');
             } catch (error) {
                 console.log(error);
             }
+            loader.hide();
         },
         forgotPassword() {
             this.$router.push('/forgot-password');
@@ -65,7 +67,8 @@ export default defineComponent({
             </NormalInput>
             <NormalButton @click="login" label="Iniciar sesión"></NormalButton>
         </div>
-        <div class="my-2 text-blue-500 underline cursor-pointer select-none hover:text-blue-700" v-touch:tap="forgotPassword">
+        <div class="my-2 text-blue-500 underline cursor-pointer select-none hover:text-blue-700"
+            v-touch:tap="forgotPassword">
             Recuperar contraseña
         </div>
     </div>

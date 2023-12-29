@@ -11,6 +11,12 @@ import VueGoogleMaps from '@fawmi/vue-google-maps'
 import App from './App.vue'
 import router from './router'
 
+import Vue3Toasity, { type ToastContainerOptions } from 'vue3-toastify'
+import 'vue3-toastify/dist/index.css'
+
+import {LoadingPlugin} from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+
 const app = createApp(App)
 
 app.use(createPinia())
@@ -21,6 +27,15 @@ app.use(VueGoogleMaps, {
     key: 'AIzaSyBksBzP29Z651LUCwmF0U7bSp7U6Z9IIuI'
     // language: 'de',
   }
+})
+
+app.use(Vue3Toasity, {
+  autoClose: 3000
+  // ...
+} as ToastContainerOptions)
+
+app.use(LoadingPlugin, {
+  color: 'red'
 })
 
 app.use(router)

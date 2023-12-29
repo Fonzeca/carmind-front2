@@ -44,6 +44,12 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/LoginView.vue'),
       beforeEnter:[mustBeLoggedOut]
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      component: () => import('../views/ForgotPasswordView.vue'),
+      beforeEnter:[mustBeLoggedOut]
     }
   ]
 })

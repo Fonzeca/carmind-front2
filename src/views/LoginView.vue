@@ -13,7 +13,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
     data() {
         return {
-            username: "",
+            email: "",
             password: "",
             imageUrl: LogoLG,
             showPass: false,
@@ -23,7 +23,7 @@ export default defineComponent({
         async login() {
             let loader = this.$loading.show();
             try {
-                await this.authStore.login(this.username, this.password);
+                await this.authStore.login(this.email, this.password);
                 this.$router.push('/app');
             } catch (error) {
                 console.log(error);
@@ -31,7 +31,7 @@ export default defineComponent({
             loader.hide();
         },
         forgotPassword() {
-            this.$router.push('/forgot-password');
+            this.$router.push({path: '/forgot-password', query: {email: this.email}});
         },
         handleEnter(event: KeyboardEvent) {
             if (event.key === 'Enter') {
@@ -54,7 +54,7 @@ export default defineComponent({
         <p class="text-lg mb-14">Ingresá a tu cuenta</p>
         <div class="max-w-[300px]" @keydown="handleEnter">
             <p class="mb-1">E-mail</p>
-            <NormalInput v-model:value="username" class="mb-9"></NormalInput>
+            <NormalInput v-model:value="email" class="mb-9"></NormalInput>
 
             <p class="mb-1">Contraseña</p>
             <NormalInput v-model:value="password" class="mb-9" :hide-value="!showPass">
@@ -62,7 +62,6 @@ export default defineComponent({
                     @click="showPass = !showPass">
                     <IconEye v-if="showPass"></IconEye>
                     <IconEyeSlash v-else></IconEyeSlash>
-
                 </div>
             </NormalInput>
             <NormalButton @click="login" label="Iniciar sesión"></NormalButton>

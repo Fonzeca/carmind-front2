@@ -20,6 +20,10 @@ export class UserHubApi extends ApiClient {
         return this.client.post('/login', credentials);
     }
 
+    logout() {
+        return this.client.post('/logout');
+    }
+
     validateCookie() {
         return this.client.post('/validate');
     }

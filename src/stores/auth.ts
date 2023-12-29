@@ -19,7 +19,14 @@ export const authStore = defineStore({
         console.error(error);
         throw new Error('Error al iniciar sesión');
       }
-
-    }
+    },
+    async logout() {
+      try {
+        return await UserHubApi.GET().logout();
+      } catch (error) {
+        console.error(error);
+        throw new Error('Error al cerrar sesión');
+      }
+    },
   },
 });

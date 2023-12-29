@@ -46,7 +46,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="flex h-[64px] flex-row items-center justify-around w-full text-white bg-gris-500">
+  <div class="flex h-[64px] flex-row items-center justify-around w-full text-white bg-bg_menu">
     <div class="flex flex-col items-center min-w-[60px] cursor-pointer" v-for="item,index in options" :key="item.route" @click="click(index)">
       <component :is="item.icon" class="w-[35px] h-[35px]" :is-selected="index === selected"></component>
       <span class="text-xs" :class="{'text-accent-500' : index === selected}">{{item.label}}</span>

@@ -27,6 +27,10 @@ export class UserHubApi extends ApiClient {
     validateCookie() {
         return this.client.post('/validate');
     }
+
+    sendRecoverPassword(email: string) {
+        return this.client.post('/pw/recover?email=' + email);
+    }
 }
 
 

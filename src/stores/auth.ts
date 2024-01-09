@@ -28,5 +28,13 @@ export const authStore = defineStore({
         throw new Error('Error al cerrar sesión');
       }
     },
+    async forgotPassword(email: string) {
+      try {
+        return await UserHubApi.GET().sendRecoverPassword(email);
+      } catch (error) {
+        console.error(error);
+        throw new Error('Error al recuperar contraseña');
+      }
+    }
   },
 });

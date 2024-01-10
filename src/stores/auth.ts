@@ -35,6 +35,22 @@ export const authStore = defineStore({
         console.error(error);
         throw new Error('Error al recuperar contraseña');
       }
-    }
+    },
+    async validateResetPasswordCode(code: string, email: string) {
+      try {
+        return await UserHubApi.GET().validateResetPasswordCode(code, email);
+      } catch (error) {
+        console.error(error);
+        throw new Error('Error al validar código');
+      }
+    },
+    async resetPassword(code: string, email: string, newPassword: string) {
+      try {
+        return await UserHubApi.GET().resetPassword(code, email, newPassword);
+      } catch (error) {
+        console.error(error);
+        throw new Error('Error al cambiar contraseña');
+      }
+    },
   },
 });

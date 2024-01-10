@@ -19,6 +19,10 @@ export default defineComponent({
             type: Boolean,
             default: false,
         },
+        placeholder: {
+            type: String,
+            default: "",
+        },
     },
     emits: ['update:value', 'blur', 'focus'],
     data() {
@@ -57,7 +61,7 @@ export default defineComponent({
     <div class="flex flex-col w-full">
         <div class="flex flex-row p-1 h-10 w-full rounded-[5px] outline outline-gray-600
                  outline-1 border-[3px] border-transparent" ref="input_container" :class="{'outline-red-600 outline-2' : haveError}">
-            <input ref="inner_input" :type="hideValue ? 'password' : 'text'"  :value="value" class="w-full" @blur="blur" @focus="focus" @input="updateValue">
+            <input ref="inner_input" :type="hideValue ? 'password' : 'text'"  :value="value" class="w-full" @blur="blur" @focus="focus" @input="updateValue" :placeholder="placeholder">
             <slot>
             </slot>
         </div>

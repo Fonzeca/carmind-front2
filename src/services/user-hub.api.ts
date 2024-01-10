@@ -31,6 +31,14 @@ export class UserHubApi extends ApiClient {
     sendRecoverPassword(email: string) {
         return this.client.post('/pw/recover?email=' + email);
     }
+
+    validateResetPasswordCode(code: string, email: string) {
+        return this.client.post('/pw/validateToken', { token: code, email });
+    }
+
+    resetPassword(code: string, email: string, newPassword: string) {
+        return this.client.post('/pw/reset', { token: code, email, newPassword });
+    }
 }
 
 

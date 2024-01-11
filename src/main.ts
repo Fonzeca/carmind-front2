@@ -14,8 +14,8 @@ import router from './router'
 import Vue3Toasity, { type ToastContainerOptions } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
 
-import {LoadingPlugin} from 'vue-loading-overlay';
-import 'vue-loading-overlay/dist/css/index.css';
+import { LoadingPlugin } from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
 
 const app = createApp(App)
 
@@ -24,7 +24,7 @@ app.use(Vue3TouchEvents)
 
 app.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBksBzP29Z651LUCwmF0U7bSp7U6Z9IIuI'
+    key: 'AIzaSyDBPVXjHFfyrSRrAigJhDKapwxuwWGTWuc'
     // language: 'de',
   }
 })

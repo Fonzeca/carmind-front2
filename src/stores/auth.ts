@@ -17,7 +17,7 @@ export const authStore = defineStore({
         return await UserHubApi.GET().login({ username, password })
       } catch (error: any) {
         if(isUserHubError(error)) {
-          throw new Error(error.response.data.message);
+          throw new Error(getMessageError(error));
         }
         console.error(error);
         throw new Error('Error al iniciar sesión');
@@ -73,4 +73,12 @@ export const authStore = defineStore({
 
 const isUserHubError = (error: any) => {
   return error.response && error.response.data && error.response.data.code && error.response.data.message && error.response.data.error;
+}
+
+const getMessageError = (error: any) => {
+  switch (error.response.data.error) {
+    case "3-UNA":
+      return "Usuario o contraseña incorrectos";
+  }
+  return error.response.data.message;
 }

@@ -17,18 +17,24 @@ export default defineComponent({
             password: "",
             imageUrl: LogoLG,
             showPass: false,
+            errorMessage: "",
         };
     },
     methods: {
         async login() {
             let loader = this.$loading.show();
+            this.resetErrorMessage();
             try {
                 await this.authStore.login(this.email, this.password);
                 this.$router.push('/app');
-            } catch (error) {
+            } catch (error: any) {
+                this.errorMessage = error.message;
                 console.log(error);
             }
             loader.hide();
+        },
+        resetErrorMessage() {
+            this.errorMessage = "";
         },
         forgotPassword() {
             this.$router.push({path: '/forgot-password', query: {email: this.email}});
@@ -54,16 +60,17 @@ export default defineComponent({
         <p class="text-lg mb-14">Ingresá a tu cuenta</p>
         <div class="max-w-[300px]" @keydown="handleEnter">
             <p class="mb-1">E-mail</p>
-            <NormalInput v-model:value="email" class="mb-9"></NormalInput>
+            <NormalInput v-model:value="email" class="mb-9" @update:value="resetErrorMessage"></NormalInput>
 
             <p class="mb-1">Contraseña</p>
-            <NormalInput v-model:value="password" class="mb-9" :hide-value="!showPass">
+            <NormalInput v-model:value="password" class="mb-6" :hide-value="!showPass" @update:value="resetErrorMessage">
                 <div class="flex flex-col justify-center h-full w-[30px] cursor-pointer select-none"
                     @click="showPass = !showPass">
                     <IconEye v-if="showPass"></IconEye>
                     <IconEyeSlash v-else></IconEyeSlash>
                 </div>
             </NormalInput>
+            <div class="my-4 text-red-600" >{{ errorMessage }}</div>
             <NormalButton @click="login" label="Iniciar sesión"></NormalButton>
         </div>
         <div class="my-2 text-blue-500 underline cursor-pointer select-none hover:text-blue-700"

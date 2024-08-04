@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   data() {
@@ -7,8 +7,7 @@ export default defineComponent({
       center: { lat: -48.404479, lng: -69.651008 },
       zoom: 6,
       options: {
-        mapId: 'aa99da66fc3150b',
-        // minZoom: 5
+        mapId: 'aa99da66fc3150b'
       }
     }
   },

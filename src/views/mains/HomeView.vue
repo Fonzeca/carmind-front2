@@ -20,6 +20,7 @@ export default defineComponent({
           patente: 'ABC123',
         }
       ] as Vehiculo[],
+      vehiculosFiltered: [] as Vehiculo[],
       headerColumns: [
         {
           name: 'Vehiculo',
@@ -34,11 +35,25 @@ export default defineComponent({
           key: 'acciones',
         }
       ] as HeaderColumn[],
+      searchString: '',
     };
+  },
+  mounted() {
+    this.vehiculosFiltered = this.vehiculos;
   },
   methods: {
     ver_gps(vehiculo : Vehiculo) {
       console.log('Ver GPS', vehiculo);
+    },
+    searchQuery() {
+      if(this.searchString === '') {
+        this.vehiculosFiltered = this.vehiculos;
+        return;
+      }
+      this.vehiculosFiltered = this.vehiculos.filter((vehiculo) => {
+        return vehiculo.name.toLowerCase().includes(this.searchString.toLowerCase()) ||
+          vehiculo.patente.toLowerCase().includes(this.searchString.toLowerCase());
+      });
     },
   },
 })
@@ -67,7 +82,7 @@ export default defineComponent({
             </div>
 
             <input class="w-full h-full pr-2 text-sm text-gray-700 outline-none peer" type="text" id="search"
-              placeholder="Search something.." />
+              placeholder="Buscar..." v-model="searchString" @input="searchQuery" />
           </div>
         </div>
 
@@ -99,7 +114,7 @@ export default defineComponent({
         <!-- Table body -->
         <tbody>
 
-          <tr class="border-b hover:bg-neutral-100" v-for="(vehiculo, index) in vehiculos" :key="index">
+          <tr class="border-b hover:bg-neutral-100" v-for="(vehiculo, index) in vehiculosFiltered" :key="index">
             <td class="px-6 py-2" v-for="(header, index) in headerColumns" :key="index">
               {{ vehiculo[header.key] }}
               <div v-if="header.name === 'Acciones'" class="flex flex-row">

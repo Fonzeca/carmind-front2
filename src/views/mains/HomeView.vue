@@ -1,10 +1,7 @@
 <script lang="ts">
+import { vehiculosStore, type Vehiculo } from '@/stores/vehiculos';
+import { mapStores } from 'pinia';
 import { defineComponent } from 'vue';
-
-interface Vehiculo {
-  name: string;
-  patente: string;
-}
 
 interface HeaderColumn {
   name: string;
@@ -14,12 +11,7 @@ interface HeaderColumn {
 export default defineComponent({
   data() {
     return {
-      vehiculos: [
-        {
-          name: 'Vehiculo 1',
-          patente: 'ABC123',
-        }
-      ] as Vehiculo[],
+      vehiculos: [] as Vehiculo[],
       vehiculosFiltered: [] as Vehiculo[],
       headerColumns: [
         {
@@ -38,8 +30,12 @@ export default defineComponent({
       searchString: '',
     };
   },
-  mounted() {
+  async mounted() {
+    this.vehiculos = await this.vehiculoStore.getAllVehiculos();
     this.vehiculosFiltered = this.vehiculos;
+  },
+  computed: {
+    ...mapStores(vehiculosStore),
   },
   methods: {
     ver_gps(vehiculo : Vehiculo) {

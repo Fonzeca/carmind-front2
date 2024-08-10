@@ -14,6 +14,7 @@ import router from './router'
 import Vue3Toasity, { type ToastContainerOptions } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
 
+import askConfirm from '@/plugins/ask_confirm'
 import { LoadingPlugin } from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
 
@@ -39,5 +40,6 @@ app.use(LoadingPlugin, {
 })
 
 app.use(router)
+app.use(askConfirm)
 
 app.mount('#app')

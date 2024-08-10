@@ -33,6 +33,7 @@ export default defineComponent({
   async mounted() {
     this.vehiculos = await this.vehiculoStore.getAllVehiculos();
     this.vehiculosFiltered = this.vehiculos;
+    this.$ask();
   },
   computed: {
     ...mapStores(vehiculosStore),

@@ -1,4 +1,5 @@
 <script lang="ts">
+import NormalButton from '@/components/NormalButton.vue';
 import { vehiculosStore, type Vehiculo } from '@/stores/vehiculos';
 import { mapStores } from 'pinia';
 import { defineComponent } from 'vue';
@@ -9,6 +10,9 @@ interface HeaderColumn {
 }
 
 export default defineComponent({
+  components: {
+    NormalButton
+  },
   data() {
     return {
       vehiculos: [] as Vehiculo[],
@@ -33,7 +37,6 @@ export default defineComponent({
   async mounted() {
     this.vehiculos = await this.vehiculoStore.getAllVehiculos();
     this.vehiculosFiltered = this.vehiculos;
-    this.$ask();
   },
   computed: {
     ...mapStores(vehiculosStore),
@@ -67,7 +70,7 @@ export default defineComponent({
       <!-- Search input -->
 
 
-        <div class='max-w-md p-2 mr-0'>
+        <div class='flex flex-row items-center max-w-md p-2 mr-0'>
           <div
             class="relative flex items-center w-full h-12 overflow-hidden bg-white border rounded-lg focus-within:shadow-lg">
             <div class="grid w-12 h-full text-gray-300 place-items-center">
@@ -81,6 +84,7 @@ export default defineComponent({
             <input class="w-full h-full pr-2 text-sm text-gray-700 outline-none peer" type="text" id="search"
               placeholder="Buscar..." v-model="searchString" @input="searchQuery" />
           </div>
+          <NormalButton label="Agregar" class="max-w-[80px] mx-2" @click="searchQuery"/>
         </div>
 
 

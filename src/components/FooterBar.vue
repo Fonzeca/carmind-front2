@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, shallowRef } from 'vue';
 import IconCar from './icons/footer-bar/IconCar.vue';
+import IconDish from './icons/footer-bar/IconDish.vue';
 import IconPerson from './icons/footer-bar/IconPerson.vue';
 import IconRoute from './icons/footer-bar/IconRoute.vue';
 
@@ -14,6 +15,11 @@ export default defineComponent({
               label: "Vehiculos",
               icon: shallowRef(IconCar),
               route: "app.home"
+            },
+            {
+              label: "GPS",
+              icon: shallowRef(IconDish),
+              route: "app.gps"
             },
             //Rutas
             {

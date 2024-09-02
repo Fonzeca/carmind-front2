@@ -17,7 +17,7 @@ export class VehiculosApi extends ApiClient {
   }
 
   getVehiculos() {
-    return this.client.get('/vehiculos')
+    return this.client.get<VehiculoApiType[]>('/vehiculo')
   }
 
   // getVehiculoById(id: string) {
@@ -25,7 +25,7 @@ export class VehiculosApi extends ApiClient {
   // }
 
   createVehiculo(data: VehiculoApiType) {
-    return this.client.post('/vehiculos', data)
+    return this.client.post('/vehiculo', data)
   }
 
   // updateVehiculo(id: string, data: VehiculoApiType) {
@@ -33,7 +33,7 @@ export class VehiculosApi extends ApiClient {
   // }
 
   deleteVehiculo(id: string) {
-    return this.client.delete(`/vehiculos/${id}`)
+    return this.client.delete(`/vehiculo?id=${id}`)
   }
 }
 
@@ -47,7 +47,7 @@ export enum VehiculoTipo {
 }
 
 export interface VehiculoApiType {
-  id?: string;
+  _id?: string;
   nombre: string;
   patente: string;
   marca?: string;

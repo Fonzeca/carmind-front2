@@ -20,10 +20,20 @@ export const vehiculosStore = defineStore({
   actions: {
     async getAllVehiculos() {
       // Implementar la lógica para obtener los vehículos
-      return [
-        { id: "1", name: 'Vehículo 1', patente: 'ABC123' },
-        { id: "2", name: 'Vehículo 2', patente: 'DEF456' },
-      ]
+      const response = await VehiculosApi.GET().getVehiculos();
+      if(response.status === 200) {
+        //map to vehiculo
+        return response.data.map<Vehiculo>((vehiculo: VehiculoApiType) => {
+          return {
+            id: vehiculo._id,
+            name: vehiculo.nombre,
+            patente: vehiculo.patente
+          } as Vehiculo;
+        });
+
+      } else {
+        throw new Error('Error al obtener vehículos');
+      }
     },
     async getVehiculo(id: string) {
       // Implementar la lógica para obtener un vehículo por ID
@@ -52,8 +62,12 @@ export const vehiculosStore = defineStore({
       return vehiculo
     },
     async deleteVehiculo(id: string) {
-      // Implementar la lógica para eliminar un vehículo
-      return id
+      const response = await VehiculosApi.GET().deleteVehiculo(id);
+      if(response.status === 200) {
+        return response.data;
+      } else {
+        throw new Error('Error al borrar vehículo');
+      }
     }
 
   },

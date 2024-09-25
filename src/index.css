@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .grid2columns {
+        @apply md:grid md:grid-cols-2 md:space-y-0 space-y-1 p-4 border-b bg-gray-50;
+    }
+}
